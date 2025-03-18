@@ -1,6 +1,11 @@
 # action.yml
 name: 'GitNextTag'
 description: 'Greet someone and record the time (for now) - Will manage git tags in the future'
+author: 'https://github.com/joostvdg'
+repo: 'https://github.com/joostvdg/git-next-tag-action'
+branding:
+  icon: 'tag'
+  color: 'orange'
 inputs:
   who-to-greet:  # id of input
     description: 'Who to greet'
