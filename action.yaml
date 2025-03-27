@@ -1,21 +1,31 @@
 # action.yml
 name: 'GitNextTag'
-description: 'Greet someone and record the time (for now) - Will manage git tags in the future'
+description: 'Deterine the next tag for a git repository based on the latest tag from a base tag mask'
 author: 'https://github.com/joostvdg'
 repo: 'https://github.com/joostvdg/git-next-tag-action'
 branding:
   icon: 'tag'
   color: 'orange'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  base-tag:
+    description: 'Base tag mask to determine the latest tag'
     required: true
-    default: 'World'
+    default: '0.1'
+  path:
+    description: 'Path to the git repository'
+    required: true
+    default: '.'
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  next-tag:
+    description: 'The next tag for the git repository'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }}
+    - --baseTag
+    - ${{ inputs.base-tag }}
+    - --path
+    - ${{ inputs.path }}
+    - --outputPath
+    -  ${{ inputs.path }}/version.txt
+    - -vvv
